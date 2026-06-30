@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shihab Store — FreeFire Services</title>
+
+    <!-- Font Awesome 6 (Free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Google Font: Orbitron & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0d12;
+            color: #f0f2f8;
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            padding: 20px 16px 60px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 480px;
+            width: 100%;
+        }
+
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #14181f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f7b731;
+            border-radius: 8px;
+        }
+
+        /* ===== TYPOGRAPHY ===== */
+        .glow-text {
+            font-family: 'Orbitron', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #e53e3e;
+            padding: 4px 14px 4px 10px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #fff;
+            box-shadow: 0 0 18px rgba(229, 62, 62, 0.5);
+            animation: pulse-live 1.6s infinite;
+        }
+
+        .badge-live i {
+            font-size: 10px;
+        }
+
+        @keyframes pulse-live {
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.75;
+                transform: scale(0.97);
+            }
+        }
+
+        /* ===== HEADER ===== */
+        .store-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #262d38;
+        }
+
+        .store-brand h1 {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 28px;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #f7b731, #f5a623, #f7b731);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(247, 183, 49, 0.25);
+            position: relative;
+            display: inline-block;
+        }
+
+        .store-brand h1::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #f7b731, transparent);
+            border-radius: 2px;
+        }
+
+        .store-brand span {
+            display: block;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            color: #8892a8;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        /* ===== BEFORE CARD ===== */
+        .before-card {
+            background: linear-gradient(145deg, #131a23, #0e141c);
+            border-radius: 20px;
+            padding: 20px 18px;
+            border: 1px solid #262d38;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .before-card::after {
+            content: '';
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle, rgba(247, 183, 49, 0.06), transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .before-label {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #f7b731;
+            text-transform: uppercase;
+            background: rgba(247, 183, 49, 0.12);
+            padding: 2px 14px;
+            border-radius: 30px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(247, 183, 49, 0.15);
+        }
+
+        .before-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 6px 12px;
+        }
+
+        .before-user {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .before-user .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1f2a37, #2a3747);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 700;
+            color: #f7b731;
+            border: 2px solid #f7b731;
+            box-shadow: 0 0 20px rgba(247, 183, 49, 0.15);
+        }
+
+        .before-user .name {
+            font-weight: 700;
+            font-size: 17px;
+            letter-spacing: 0.3px;
+        }
+
+        .before-user .name small {
+            display: block;
+            font-weight: 400;
+            font-size: 11px;
+            color: #8892a8;
+            letter-spacing: 0.5px;
+        }
+
+        .before-stats {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item .num {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 18px;
+            color: #f0f2f8;
+        }
+
+        .stat-item .num.gold {
+            color: #f7b731;
+        }
+
+        .stat-item .label {
+            font-size: 8px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #6b7a90;
+            display: block;
+            margin-top: 2px;
+        }
+
+        .before-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #1f2a37;
+            padding: 4px 12px 4px 10px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #a0b3cc;
+            border: 1px solid #2e3a4a;
+        }
+
+        .before-badge i {
+            color: #f7b731;
+        }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title {
+            font-family: 'Orbitron', monospace;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 1px;
+            margin: 28px 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #f7b731;
+            font-size: 18px;
+        }
+
+        .section-title .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, #262d38, transparent);
+        }
+
+        /* ===== PACKAGE CARD ===== */
+        .package-card {
+            background: linear-gradient(145deg, #131a23, #0e141c);
+            border-radius: 18px;
+            padding: 18px 18px 20px;
+            border: 1px solid #262d38;
+            margin-bottom: 14px;
+            transition: 0.25s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .package-card:hover {
+            border-color: #f7b73155;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+
+        .package-card .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .package-card .title {
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.3px;
+        }
+
+        .package-card .title .highlight {
+            color: #f7b731;
+        }
+
+        .package-card .price {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 26px;
+            color: #f7b731;
+            text-shadow: 0 0 30px rgba(247, 183, 49, 0.2);
+        }
+
+        .package-card .price small {
+            font-size: 14px;
+            font-weight: 600;
+            color: #a0b3cc;
+        }
+
+        .package-card .meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 4px;
+        }
+
+        .package-card .meta .tag {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: #1f2a37;
+            padding: 3px 14px;
+            border-radius: 30px;
+            color: #a0b3cc;
+            border: 1px solid #2e3a4a;
+        }
+
+        .package-card .meta .tag.gold {
+            background: rgba(247, 183, 49, 0.12);
+            color: #f7b731;
+            border-color: rgba(247, 183, 49, 0.2);
+        }
+
+        .package-card .desc {
+            font-size: 12px;
+            color: #8892a8;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .package-card .desc i {
+            color: #f7b731;
+            font-size: 12px;
+        }
+
+        /* ===== GUILD GLORY (UPDATED AS PER SCREENSHOT) ===== */
+        .glory-card {
+            background: linear-gradient(145deg, #131a23, #0e141c);
+            border-radius: 18px;
+            padding: 18px 18px 20px;
+            border: 1px solid #262d38;
+            margin-bottom: 14px;
+            border-left: 4px solid #f7b731;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .glory-card .glory-title {
+            font-weight: 700;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #f7b731;
+        }
+
+        .glory-card .glory-title i {
+            color: #f7b731;
+        }
+
+        .glory-card .glory-desc {
+            font-size: 14px;
+            color: #d0d8e8;
+            margin-top: 8px;
+            line-height: 1.7;
+        }
+
+        .glory-card .glory-desc .highlight {
+            color: #f7b731;
+            font-weight: 700;
+        }
+
+        .glory-card .glory-desc .emoji {
+            margin-right: 6px;
+        }
+
+        .glory-card .glory-badge {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(247, 183, 49, 0.10);
+            padding: 4px 16px;
+            border-radius: 30px;
+            color: #f7b731;
+            border: 1px solid rgba(247, 183, 49, 0.15);
+        }
+
+        /* ===== GUILD GLORY BOT PRICE LIST ===== */
+        .glory-bot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .glory-bot-item {
+            background: linear-gradient(145deg, #131a23, #0e141c);
+            border-radius: 18px;
+            padding: 16px 12px;
+            border: 1px solid #262d38;
+            text-align: center;
+            transition: 0.25s ease;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: #f0f2f8;
+        }
+
+        .glory-bot-item:hover {
+            border-color: #22c55e;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 28px rgba(34, 197, 94, 0.15);
+        }
+
+        .glory-bot-item .bot-name {
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.3px;
+        }
+
+        .glory-bot-item .bot-price {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 20px;
+            color: #22c55e;
+            margin: 4px 0 2px;
+        }
+
+        .glory-bot-item .bot-price small {
+            font-size: 12px;
+            font-weight: 600;
+            color: #8892a8;
+        }
+
+        .glory-bot-item .bot-badge {
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(34, 197, 94, 0.12);
+            padding: 2px 12px;
+            border-radius: 30px;
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.15);
+            margin-top: 4px;
+        }
+
+        .glory-bot-item .bot-icon {
+            font-size: 28px;
+            color: #22c55e;
+            margin-bottom: 2px;
+        }
+
+        /* ===== TCP PLANS ===== */
+        .tcp-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .tcp-plan {
+            background: linear-gradient(145deg, #131a23, #0e141c);
+            border-radius: 18px;
+            padding: 16px 14px 18px;
+            border: 1px solid #262d38;
+            text-align: center;
+            transition: 0.25s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .tcp-plan:hover {
+            border-color: #f7b73155;
+            transform: translateY(-2px);
+        }
+
+        .tcp-plan.premium {
+            border-color: #f7b73144;
+            background: linear-gradient(145deg, #1a1f2b, #11171f);
+        }
+
+        .tcp-plan .plan-name {
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #a0b3cc;
+        }
+
+        .tcp-plan .plan-name i {
+            color: #f7b731;
+            margin-right: 4px;
+        }
+
+        .tcp-plan .plan-price {
+            font-family: 'Orbitron', monospace;
+            font-weight: 900;
+            font-size: 22px;
+            color: #f7b731;
+            margin: 6px 0 4px;
+        }
+
+        .tcp-plan .plan-price small {
+            font-size: 12px;
+            font-weight: 600;
+            color: #8892a8;
+        }
+
+        .tcp-plan .plan-features {
+            font-size: 10px;
+            color: #8892a8;
+            line-height: 1.7;
+            margin-top: 4px;
+        }
+
+        .tcp-plan .plan-features i {
+            color: #f7b731;
+            margin-right: 4px;
+            font-size: 9px;
+        }
+
+        .tcp-plan .plan-badge {
+            display: inline-block;
+            margin-top: 8px;
+            font-size: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            background: rgba(247, 183, 49, 0.10);
+            padding: 2px 12px;
+            border-radius: 30px;
+            color: #f7b731;
+            border: 1px solid rgba(247, 183, 49, 0.12);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact-section {
+            margin-top: 32px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .contact-row .btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 10px;
+            border-radius: 16px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            color: #fff;
+            border: none;
+            transition: 0.2s ease;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .contact-row .btn i {
+            font-size: 20px;
+        }
+
+        .btn-whatsapp {
+            background: #25d366;
+        }
+        .btn-whatsapp:hover {
+            background: #1da851;
+            transform: scale(1.02);
+            box-shadow: 0 8px 28px rgba(37, 211, 102, 0.35);
+        }
+
+        .btn-telegram {
+            background: #1f8ef1;
+        }
+        .btn-telegram:hover {
+            background: #1775c9;
+            transform: scale(1.02);
+            box-shadow: 0 8px 28px rgba(31, 142, 241, 0.35);
+        }
+
+        .btn-order {
+            background: linear-gradient(135deg, #f7b731, #e09d1e);
+            color: #0b0d12;
+            font-weight: 800;
+            padding: 16px;
+            border-radius: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s ease;
+            box-shadow: 0 6px 24px rgba(247, 183, 49, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-order:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 34px rgba(247, 183, 49, 0.4);
+        }
+
+        .btn-order i {
+            font-size: 18px;
+        }
+
+        /* ===== DAILY OFFER BANNER ===== */
+        .daily-offer {
+            background: linear-gradient(135deg, #1a1f2b, #11171f);
+            border-radius: 16px;
+            padding: 14px 18px;
+            border: 1px solid #f7b73133;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 24px 0 8px;
+            box-shadow: 0 0 30px rgba(247, 183, 49, 0.04);
+        }
+
+        .daily-offer i {
+            font-size: 26px;
+            color: #f7b731;
+        }
+
+        .daily-offer .text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #a0b3cc;
+        }
+
+        .daily-offer .text strong {
+            color: #f0f2f8;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 420px) {
+            .before-row {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .before-stats {
+                width: 100%;
+                justify-content: space-between;
+            }
+            .tcp-grid,
+            .glory-bot-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-row {
+                flex-direction: column;
+            }
+            .store-brand h1 {
+                font-size: 24px;
+            }
+            .package-card .price {
+                font-size: 22px;
+            }
+        }
+
+        /* ===== FOOTER ===== */
+        .footer-note {
+            text-align: center;
+            font-size: 10px;
+            color: #3d495a;
+            margin-top: 36px;
+            letter-spacing: 0.5px;
+            border-top: 1px solid #1a212a;
+            padding-top: 20px;
+        }
+
+        .footer-note span {
+            color: #f7b731;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- ===== HEADER ===== -->
+        <header class="store-header">
+            <div class="store-brand">
+                <h1>Shihab Store</h1>
+                <span>Premium FreeFire Services</span>
+            </div>
+            <div class="badge-live">
+                <i class="fas fa-circle"></i> Live
+            </div>
+        </header>
+
+        <!-- ===== BEFORE CARD ===== -->
+        <div class="before-card">
+            <div class="before-label"><i class="fas fa-arrow-right" style="margin-right:6px;"></i> BEFORE</div>
+
+            <div class="before-row">
+                <div class="before-user">
+                    <div class="avatar">SH</div>
+                    <div class="name">
+                        Shihab_FF
+                        <small>Lv. 55 · Heroic Emblem 535</small>
+                    </div>
+                </div>
+                <div class="before-stats">
+                    <div class="stat-item">
+                        <span class="num gold">1,340</span>
+                        <span class="label">Likes</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="num">123,108</span>
+                        <span class="label">Followers</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="num gold">+50K</span>
+                        <span class="label">Boost</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:14px;">
+                <span class="before-badge"><i class="fas fa-fire"></i> FREE FIRE</span>
+                <span class="before-badge"><i class="fas fa-globe"></i> English</span>
+                <span class="before-badge"><i class="fas fa-trophy"></i> 99,999,999</span>
+            </div>
+        </div>
+
+        <!-- ===== SECTION: LIKE PACKAGES ===== -->
+        <div class="section-title">
+            <i class="fas fa-thumbs-up"></i> LIKE PACKAGES
+            <span class="line"></span>
+        </div>
+
+        <!-- Package 1 -->
+        <div class="package-card">
+            <div class="top">
+                <span class="title"><span class="highlight">3300</span> LIKE</span>
+                <span class="price">₱350 <small>PHP</small></span>
+            </div>
+            <div class="meta">
+                <span class="tag gold"><i class="far fa-clock"></i> 15 DAY</span>
+                <span class="tag">PACKAGE</span>
+            </div>
+            <div class="desc">
+                <i class="fas fa-check-circle"></i> Direct Delivery – With Items
+            </div>
+        </div>
+
+        <!-- Package 2 -->
+        <div class="package-card">
+            <div class="top">
+                <span class="title"><span class="highlight">6600</span> LIKE</span>
+                <span class="price">₱600 <small>PHP</small></span>
+            </div>
+            <div class="meta">
+                <span class="tag gold"><i class="far fa-clock"></i> 30 DAY</span>
+                <span class="tag">PACKAGE</span>
+            </div>
+            <div class="desc">
+                <i class="fas fa-check-circle"></i> Complete Package – With Service
+            </div>
+        </div>
+
+        <!-- ===== UPDATED SECTION: GUILD GLORY (as per screenshot) ===== -->
+        <div class="section-title">
+            <i class="fas fa-flag"></i> GUILD GLORY
+            <span class="line"></span>
+        </div>
+
+        <div class="glory-card">
+            <div class="glory-title">
+                <i class="fas fa-crown"></i> সার্জে ৫০০০
+            </div>
+            <div class="glory-desc">
+                <span class="emoji">◀</span> <span class="highlight">লাখ – অ্যাডাই লাখ GLORY</span> <br />
+                <span class="emoji">★</span> বিলম্বে সুবিধা: <span class="highlight">GUILD LEVEL 1</span> হলে একবারে 5 লেজেন হচ্ছে যাবে! <br />
+                <span class="emoji">🔍</span> GUILD 7 LEVEL করলে 8 থেকে <span class="highlight">৫ লাখ GLORY</span> লাগে পুনর্বাসিত হবে।
+            </div>
+            <span class="glory-badge"><i class="fas fa-star"></i> ক্লিক করে অর্ডার করুন</span>
+        </div>
+
+        <!-- ===== GUILD GLORY BOT PRICE LIST ===== -->
+        <div class="section-title">
+            <i class="fas fa-robot" style="color:#22c55e;"></i> GUILD GLORY BOT
+            <span class="line"></span>
+        </div>
+
+        <div class="glory-bot-grid">
+            <!-- 5 BOT -->
+            <a href="#" class="glory-bot-item" data-package="5 BOT">
+                <div class="bot-icon"><i class="fas fa-robot"></i></div>
+                <div class="bot-name">5 BOT</div>
+                <div class="bot-price">250 <small>TAKA</small></div>
+                <span class="bot-badge"><i class="fas fa-arrow-right"></i> Select</span>
+            </a>
+
+            <!-- 10 BOT -->
+            <a href="#" class="glory-bot-item" data-package="10 BOT">
+                <div class="bot-icon"><i class="fas fa-robot"></i></div>
+                <div class="bot-name">10 BOT</div>
+                <div class="bot-price">450 <small>TAKA</small></div>
+                <span class="bot-badge"><i class="fas fa-arrow-right"></i> Select</span>
+            </a>
+
+            <!-- 15 BOT -->
+            <a href="#" class="glory-bot-item" data-package="15 BOT">
+                <div class="bot-icon"><i class="fas fa-robot"></i></div>
+                <div class="bot-name">15 BOT</div>
+                <div class="bot-price">650 <small>TAKA</small></div>
+                <span class="bot-badge"><i class="fas fa-arrow-right"></i> Select</span>
+            </a>
+
+            <!-- GUILD MAX -->
+            <a href="#" class="glory-bot-item" data-package="GUILD MAX">
+                <div class="bot-icon"><i class="fas fa-crown" style="color:#f7b731;"></i></div>
+                <div class="bot-name">GUILD MAX 🟢</div>
+                <div class="bot-price">850 <small>TAKA</small></div>
+                <span class="bot-badge" style="background:rgba(247,183,49,0.12); color:#f7b731; border-color:rgba(247,183,49,0.2);"><i class="fas fa-star"></i> Best Deal</span>
+            </a>
+        </div>
+
+        <!-- ===== SECTION: GUILD TCP / BOT ===== -->
+        <div class="section-title">
+            <i class="fas fa-robot"></i> GUILD TCP / BOT
+            <span class="line"></span>
+        </div>
+
+        <div class="tcp-grid">
+            <!-- Normal Plan -->
+            <div class="tcp-plan">
+                <div class="plan-name"><i class="fas fa-shield-alt"></i> NORMAL</div>
+                <div class="plan-price">₹700 <small>INR</small></div>
+                <div class="plan-features">
+                    <i class="fas fa-check"></i> 2 Slot Server<br />
+                    <i class="fas fa-check"></i> Full GUILD TCP File<br />
+                    <i class="fas fa-check"></i> Fast Delivery<br />
+                    <i class="fas fa-check"></i> Click to Select
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="tcp-plan premium">
+                <div class="plan-name"><i class="fas fa-gem"></i> PREMIUM</div>
+                <div class="plan-price">₹1200 <small>INR</small></div>
+                <div class="plan-features">
+                    <i class="fas fa-check"></i> 2 Slot Server<br />
+                    <i class="fas fa-check"></i> All Features Unlocked + Private Bot<br />
+                    <i class="fas fa-check"></i> ULTRA PREMIUM Benefits<br />
+                    <i class="fas fa-check"></i> Priority Support
+                </div>
+                <span class="plan-badge"><i class="fas fa-bolt"></i> Selected – Ready to Order</span>
+            </div>
+        </div>
+
+        <!-- ===== DAILY OFFER ===== -->
+        <div class="daily-offer">
+            <i class="fas fa-bolt"></i>
+            <div class="text">
+                <strong>DAILY OFFER</strong> — Exclusive Deal for Members Only
+            </div>
+        </div>
+
+        <!-- ===== CONTACT / ORDER ===== -->
+        <div class="contact-section">
+
+            <a href="#" class="btn-order">
+                <i class="fas fa-shopping-cart"></i> Order Now
+            </a>
+
+            <div class="contact-row">
+                <a href="#" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="#" class="btn btn-telegram">
+                    <i class="fab fa-telegram-plane"></i> Telegram
+                </a>
+            </div>
+
+            <div style="display:flex; gap:12px; justify-content:center; margin-top:4px; font-size:11px; color:#6b7a90;">
+                <span><i class="fas fa-headset"></i> 24/7 Support</span>
+                <span><i class="fas fa-users"></i> Group &amp; Update</span>
+            </div>
+        </div>
+
+        <!-- ===== FOOTER ===== -->
+        <div class="footer-note">
+            &copy; 2026 <span>Shihab Store</span> — FreeFire Service at Wholesale Rate
+        </div>
+
+    </div>
+
+    <!-- ===== SCRIPT ===== -->
+    <script>
+        // Add click feedback on all order/select buttons
+        document.querySelectorAll('.btn-order, .btn-whatsapp, .btn-telegram, .glory-bot-item').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                }
+                this.style.transform = 'scale(0.96)';
+                setTimeout(() => { this.style.transform = ''; }, 200);
+
+                if (this.classList.contains('glory-bot-item')) {
+                    const pkg = this.getAttribute('data-package') || 'Unknown';
+                    alert(`🟢 You selected: ${pkg}\nClick "Order Now" or contact us on WhatsApp/Telegram to confirm.`);
+                } else if (this.getAttribute('href') === '#') {
+                    alert('🔗 Contact link will be added soon!');
+                }
+            });
+        });
+
+        console.log('🛒 Shihab Store — Premium FreeFire Services');
+    </script>
+
+</body>
+</html>
